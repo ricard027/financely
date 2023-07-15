@@ -1,10 +1,11 @@
 "use client";
 import { ButtonComponent } from "../components/button/button-component";
+import InputComponent from "../components/input/input-component";
 
 function LoginPage() {
   return (
     <div>
-      <input type="text" />
+      <InputComponent placeholder={"teste"} label={"teste"} />
       <ButtonComponent primary={true}>Entrar</ButtonComponent>
     </div>
   );
