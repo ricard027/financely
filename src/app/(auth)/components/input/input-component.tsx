@@ -1,27 +1,24 @@
-import tw from "tailwind-styled-components";
-import { HtmlHTMLAttributes } from "react";
+import { LegacyRef, forwardRef, ComponentPropsWithoutRef } from "react";
 
-interface IInputContainerProps {
-  placeholder?: String;
+interface InputProps extends ComponentPropsWithoutRef<"input"> {
   label?: string;
-  type: Number | string;
-  hasError: Boolean;
+  hasError?: Boolean;
 }
 
-const error = `boder border-solid border-red-500
-`;
-
-const InputContainer = tw.input<IInputContainerProps>`
-${({ hasError }) => (hasError ? error : ``)}
-`;
-
-interface IInputContainerProps extends HtmlHTMLAttributes<HTMLInputElement> {}
-const InputComponent = ({ label, placeholder }: IInputContainerProps) => {
+const InputComponent = (
+  { label, placeholder, ...props }: InputProps,
+  ref: LegacyRef<HTMLInputElement> | undefined
+) => {
   return (
-    <div>
-      <label>{label}</label>
-      <InputContainer placeholder={placeholder} />
+    <div className="flex flex-col text-gray-200">
+      <label className="mt-2">{label}</label>
+      <input
+        placeholder={placeholder}
+        {...props}
+        ref={ref}
+        className="rounded-md px-4 py-2 w-[300px] bg-gray-700 text-gray-200 placeholder:text-gray-400"
+      />
     </div>
   );
 };
-export default InputComponent;
+export default forwardRef(InputComponent);
