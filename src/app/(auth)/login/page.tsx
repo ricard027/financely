@@ -40,11 +40,13 @@ function LoginPage() {
     <LoginContainer>
       <InputComponent
         placeholder={"digite seu email"}
+        hasError={!!errors?.email}
         label={"email"}
         {...register("email", { required: true })}
       />
       <InputComponent
         placeholder={"digite sua senha"}
+        hasError={!!errors?.password}
         label={"Senha"}
         {...register("password", { required: true })}
       />
