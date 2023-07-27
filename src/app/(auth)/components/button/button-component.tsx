@@ -1,24 +1,20 @@
-import tw from "tailwind-styled-components";
+import { FunctionComponent, HtmlHTMLAttributes } from "react";
 
-interface IButtonContainerProps {
+interface IButtonContainerProps extends HtmlHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
-}
-
-const ButtonContainer = tw.button<IButtonContainerProps>`
-${({ primary }) => (primary ? "bg-black" : "bg-white")}
-text-white
-rounded-sm
-px-4
-py-2
-`;
-
-interface IButtonComponentProps extends IButtonContainerProps {
   children: string;
 }
 
-export const ButtonComponent = ({
+export const ButtonComponent: FunctionComponent<IButtonContainerProps> = ({
   children,
-  primary,
-}: IButtonComponentProps) => {
-  return <ButtonContainer primary={primary}>{children}</ButtonContainer>;
+  ...props
+}) => {
+  return (
+    <button
+      {...props}
+      className="bg-gradient-to-tr from-purple-600 to-blue-600 px-4 py-2 w-[300px] text-white rounded-md hover:to-blue-700 hover:from-purple-700 mt-6"
+    >
+      {children}
+    </button>
+  );
 };
